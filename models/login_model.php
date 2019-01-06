@@ -5,6 +5,8 @@ class Login_Model extends Model
     public $username;
     public $password;
     public $email;
+    public $admin;
+    public $error;
 
     public function __construct()
     {
@@ -36,14 +38,18 @@ class Login_Model extends Model
          $statement->setFetchMode(PDO::FETCH_CLASS, 'Login_Model');
          $data = $statement->fetch();
          if (!$data){
-             echo "username not found";
+             $error = "username not found";
              return false;
          }
          $same = $data->checkPassword($_POST['password']);
          if ($same){
-             echo "same password";
+             echo "setting session";
+            Session::set('loggedIn', true);
+            Session::set('username', $data->username);
+            Session::set('admin', $data->admin);
+            return true;
          } else {
-             echo "wrong password";
+            $error = "wrong password";
              return false;
          }
          
@@ -61,9 +67,12 @@ class Login_Model extends Model
         ));
         if ( $statement->rowCount() > 0)
         {
-            echo "success";
+            Session::set('loggedIn', true);
+            Session::set('username', $data->username);
+            return true;
         } else {
-            echo "rail";
+            $error = "failed to create user";
+            return false;
         }
     }
 

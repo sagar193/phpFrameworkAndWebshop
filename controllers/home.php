@@ -9,8 +9,11 @@ class Home extends Controller
 
     public function get($arg = false)
     {
-        require 'models/product_model.php';
-        $Product_Model = new Product_Model();
+        if (Session::get('loggedIn') == true){
+            echo "tat";
+        } else {
+            echo "lol";
+        }
 
         $this->view->render('home');
     }

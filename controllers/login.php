@@ -5,7 +5,6 @@ class Login extends Controller
     function __construct()
     {
         parent::__construct();
-        
     }
 
     public function get()
@@ -15,7 +14,12 @@ class Login extends Controller
 
     public function login()
     {
-        $this->model->login();
+        if ($this->model->login() == true){
+            $this->view->render('login');
+        } else
+        {
+            $this->view->render('login');
+        }
     }
 
     public function register()
@@ -26,5 +30,11 @@ class Login extends Controller
     public function getAll()
     {
         $this->model->getAll();
+    }
+    
+    public function logout()
+    {
+        Session::destroy();
+        header('location: ../');
     }
 }

@@ -5,8 +5,7 @@ class Controller
     function __construct(){
         
         $this->view = new View();
-
-        
+        Session::init();
     }
 
     public function loadModel($name)
