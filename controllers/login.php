@@ -14,17 +14,36 @@ class Login extends Controller
 
     public function login()
     {
-        if ($this->model->login() == true){
-            $this->view->render('login');
-        } else
-        {
+        $user = $this->repository->getUserByName($_POST['username']);
+        if ($user){
+            $same = $user->checkPassword($_POST['password']);
+            if ($same){
+                Session::set('id', $user->id);
+                $this->view->render('login');
+            } else {
+                $this->view->msg = "Password is incorrect";
+                $this->view->render('login');
+            }
+        } else{
+            $this->view->msg =  "User doesn't exist";
             $this->view->render('login');
         }
     }
 
     public function register()
     {
-        $this->model->register();
+        $success = $this->repository->addUser($_POST['emailAddress'], $_POST['username'], $_POST['password']);
+        if($success)
+        {
+            $user = $this->repository->getUserByName($_POST['username']);
+            Session::set('id', $user->id);
+            $this->view->render('home');
+        } 
+        else
+        {
+            $this->view->msg = "Password already in use";
+            $this->view->render('login');
+        }
     }
 
     public function getAll()

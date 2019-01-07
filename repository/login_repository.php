@@ -3,65 +3,42 @@ require 'models/user.php';
 
 class Login_Repository extends Model
 {
-    public $username;
-    public $password;
-    public $email;
-    public $admin;
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function login()
+    public function getUserByName($username)
     {
         $statement = $this->db->prepare("SELECT * FROM users WHERE
          username = :username;");
          $statement->execute(array(
-             ':username' => $_POST['username'],
+             ':username' => $username,
          ));
          $statement->setFetchMode(PDO::FETCH_CLASS, 'User');
          $data = $statement->fetch();
-         if (!$data){
-             $error = "username not found";
-             return false;
-         }
-         $same = $data->checkPassword($_POST['password']);
-         if ($same){
-             echo "setting session";
-            Session::set('loggedIn', true);
-            Session::set('username', $data->username);
-            Session::set('admin', $data->admin);
-            return true;
-         } else {
-            $error = "wrong password";
-             return false;
-         }
-         
+         return $data;
     }
 
-    public function register(){
+    public function addUser($email, $username, $password){
         $statement = $this->db->prepare("INSERT INTO users (id, email, username, password) VALUES (NULL, :emailAddress ,:login, :password)");
         
-        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT, ['cost' => 10]);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
         
         $statement->execute(array(
-            ':emailAddress' =>$_POST['emailAddress'],
-            ':login' => $_POST['username'],
+            ':emailAddress' =>$email,
+            ':login' => $username,
             ':password' => $hashedPassword
         ));
         if ( $statement->rowCount() > 0)
         {
-            Session::set('loggedIn', true);
-            Session::set('username', $data->username);
             return true;
         } else {
-            $error = "failed to create user";
             return false;
         }
     }
 
-    public function getAll()
+    public function getAllUsers()
     {
         $statement = $this->db->prepare("SELECT * FROM users;");
         $statement->execute();

@@ -15,7 +15,7 @@
 <div id="header">
 <a href="<?php ROOTURL?>/">Home</a>
 <a href="<?php ROOTURL?>/product">Product</a>
-<?php if (Session::get('loggedIn') == true): ?>
+<?php if (Session::get('id')): ?>
     <a href="<?php ROOTURL?>/login/logout">Logout</a>
 <?php else: ?>
     <a href="<?php ROOTURL?>/login">Login</a>

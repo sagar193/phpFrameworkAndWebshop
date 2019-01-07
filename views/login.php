@@ -2,7 +2,7 @@
 
 <div id="login">
 <form action="<?php ROOTURL?>/login/login" method="post">
-<?php //echo $this->msg?> <br/>
+<?php if (isset($this->msg)){echo $this->msg;};?> <br/>
 
 <label>username</label><input type="text" name="username"/> <br/>
 <label>Password</label><input type="password" name="password"/><br/>
