@@ -10,11 +10,11 @@ class Controller
 
     public function loadModel($name)
     {
-        if (file_exists($GLOBALS['mod'].$name.'_model.php')){
-            require $GLOBALS['mod'].$name.'_model.php';
+        if (file_exists($GLOBALS['rep'].$name.'_repository.php')){
+            require $GLOBALS['rep'].$name.'_repository.php';
 
-            $modelname = $name. '_model';
-            $this->model = new $modelname;
+            $modelname = $name. '_repository';
+            $this->repository = new $modelname;
         }
     }
 }

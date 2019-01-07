@@ -1,41 +1,26 @@
 <?php
+require 'models/user.php';
 
-class Login_Model extends Model
+class Login_Repository extends Model
 {
     public $username;
     public $password;
     public $email;
     public $admin;
-    public $error;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function test()
-    {
-
-    }
-
-    public function checkPassword($enteredPassword){
-        $result = password_verify($enteredPassword, $this->password);
-        if($result){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function login()
     {
-        
         $statement = $this->db->prepare("SELECT * FROM users WHERE
          username = :username;");
          $statement->execute(array(
              ':username' => $_POST['username'],
          ));
-         $statement->setFetchMode(PDO::FETCH_CLASS, 'Login_Model');
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'User');
          $data = $statement->fetch();
          if (!$data){
              $error = "username not found";
