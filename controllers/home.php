@@ -9,12 +9,6 @@ class Home extends Controller
 
     public function get($arg = false)
     {
-        if (Session::get('loggedIn') == true){
-            echo "tat";
-        } else {
-            echo "lol";
-        }
-
         $this->view->render('home');
     }
 }

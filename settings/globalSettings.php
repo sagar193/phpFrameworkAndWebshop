@@ -5,7 +5,8 @@ $GLOBALS['lib'] = "libs/";
 $GLOBALS['mod'] = "models/";
 $GLOBALS['view'] = "views/";
 
-define('ROOT_PATH', dirname(__DIR__). '/');
+$rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+define('ROOTURL', $rootUrl);
 
 
 ?>

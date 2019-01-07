@@ -13,18 +13,18 @@
 </head>
 <body>
 <div id="header">
-<a href="home">Home</a>
-<a href="product">Product</a>
+<a href="<?php ROOTURL?>/">Home</a>
+<a href="<?php ROOTURL?>/product">Product</a>
 <?php if (Session::get('loggedIn') == true): ?>
-    <a href="login/logout">Logout</a>
+    <a href="<?php ROOTURL?>/login/logout">Logout</a>
 <?php else: ?>
-    <a href="login">Login</a>
+    <a href="<?php ROOTURL?>/login">Login</a>
 <?php endif; ?>
 
 <?php if (Session::get('admin') == true): ?>
-    <a href="admin">Admin</a>
+    <a href="<?php ROOTURL?>/admin">Admin</a>
 <?php endif; ?>
-<a href="about">About</a>
+<a href="<?php ROOTURL?>/about">About</a>
 
 
 </div>
