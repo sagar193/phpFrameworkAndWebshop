@@ -1,9 +1,9 @@
 <h1>loginpage</h1>
 
-<div id="login">
-<form action="<?php ROOTURL?>/login/login" method="post">
 <?php if (isset($this->msg)){echo $this->msg;};?> <br/>
 
+<div id="login">
+<form action="<?php ROOTURL?>/login/login" method="post">
 <label>username</label><input type="text" name="username"/> <br/>
 <label>Password</label><input type="password" name="password"/><br/>
 <label></label> <input type="submit" />

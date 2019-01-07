@@ -1,4 +1,5 @@
 <?php
+require 'repsitory/category.php';
 
 class Product extends Controller 
 {

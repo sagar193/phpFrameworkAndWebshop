@@ -1,7 +1,7 @@
 <?php
 require 'models/user.php';
 
-class Login_Repository extends Model
+class Login_Repository extends Repository
 {
     public function __construct()
     {
@@ -25,7 +25,7 @@ class Login_Repository extends Model
         
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
         
-        $statement->execute(array(
+        $reu = $statement->execute(array(
             ':emailAddress' =>$email,
             ':login' => $username,
             ':password' => $hashedPassword
