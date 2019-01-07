@@ -1,6 +1,6 @@
 <?php
 
-class Product_Repository extends Model
+class Product_Repository extends Repository
 {
     function __construct()
     {

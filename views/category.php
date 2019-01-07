@@ -1,7 +1,12 @@
 <h1> Categories </h1>
 
 <?php foreach ($this->categories as &$obj){?>
-<?php echo $obj->CategoryName;?> <br/>
+<label><?php echo $obj->CategoryName;?> </Label>
+<a href="<?php ROOTURL?>/category/detail/<?php echo $obj->CategoryID?>">
+<img src="<?php ROOTURL?>/public/images/edit.png"/></a>
+<a href="<?php ROOTURL?>/category/delete/<?php echo $obj->CategoryID?>">
+<img src="<?php ROOTURL?>/public/images/delete.png"/></a>
+<br/>
 <?php } ?>
 
 <div id="add category">

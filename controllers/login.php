@@ -19,7 +19,13 @@ class Login extends Controller
             $same = $user->checkPassword($_POST['password']);
             if ($same){
                 Session::set('id', $user->id);
-                $this->view->render('login');
+                if ($user->admin == 1)
+                {
+                    Session::set('admin', true);
+                    header("location: ../admin");
+                } else {
+                    header("location: ../");
+                }
             } else {
                 $this->view->msg = "Password is incorrect";
                 $this->view->render('login');

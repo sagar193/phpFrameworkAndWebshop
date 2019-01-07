@@ -1,5 +1,5 @@
 <?php
-require 'models/user.php';
+require 'models/user_model.php';
 
 class Login_Repository extends Repository
 {
@@ -15,7 +15,7 @@ class Login_Repository extends Repository
          $statement->execute(array(
              ':username' => $username,
          ));
-         $statement->setFetchMode(PDO::FETCH_CLASS, 'User');
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'User_Model');
          $data = $statement->fetch();
          return $data;
     }
