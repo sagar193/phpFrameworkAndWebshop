@@ -10,6 +10,11 @@ class Product extends Controller
     public function get($msg=false)
     {
         $this->view->products = $this->repository->getAll();
+        
+        include 'repository/subcategory_repository.php';
+        $CateRepo = new Subcategory_Repository();
+        $this->view->categories = $CateRepo->getSubcategoryOnCategories();
+
         $this->view->render('product');
     }
 
