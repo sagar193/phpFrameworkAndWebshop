@@ -30,13 +30,13 @@ class Controller
             }
             else
             {
-                header('location: ../error');
+                $this->view->render('erno_forbidden');
                 exit();
             }
         }
         else 
         {
-            header('location: ../error');
+            $this->view->render('erno_forbidden');
             exit();
         }
     }

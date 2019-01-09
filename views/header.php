@@ -13,8 +13,9 @@
 </head>
 <body>
 <div id="header">
-<a href="<?php ROOTURL?>/">Home</a>
-<a href="<?php ROOTURL?>/product">Product</a>
+<?php foreach ($this->header as $key) { ?>
+    <a href=" <?php echo ROOTURL. $key->MenuLink ?> "> <?php echo $key->MenuName ?></a>
+<?php } ?>
 <?php if (Session::get('id')): ?>
     <a href="<?php ROOTURL?>/login/logout">Logout</a>
 <?php else: ?>
@@ -24,8 +25,6 @@
 <?php if (Session::get('admin') == true): ?>
     <a href="<?php ROOTURL?>/admin">Admin</a>
 <?php endif; ?>
-<a href="<?php ROOTURL?>/about">About</a>
-
 
 </div>
 

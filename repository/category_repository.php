@@ -56,8 +56,12 @@ class Category_Repository extends Repository
              ':CategoryName' => $categoryName
          ));
          $statement->setFetchMode(PDO::FETCH_CLASS, 'Category_Model');
-         $data = $statement->fetch();
-         return $data;
+         if ( $statement->rowCount() > 0)
+         {
+             return true;
+         } else {
+             return false;
+         }
     }
 
     public function getCategoryByID($CategoryID)

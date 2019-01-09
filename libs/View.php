@@ -9,6 +9,10 @@ class View{
 
     public function render($name)
     {
+        require_once 'repository/menu_repository.php';
+        $menu = new Menu_Repository();
+        $this->header = $menu->getAllMenus();
+        
         require $GLOBALS['view'].'header.php';
         require $GLOBALS['view'].$name. '.php'; 
         require $GLOBALS['view'].'footer.php';

@@ -1,22 +1,27 @@
 <?php
-class Product extends Controller 
+
+class Menu extends Controller
 {
     function __construct()
     {
         parent::__construct();
-        
     }
 
-    public function get($msg=false)
+    public function get($msg = false)
     {
-        $this->view->products = $this->repository->getAll();
-        $this->view->render('product');
+        $this->view->menu = $this->repository->getAllMenus();
+
+        if($msg)
+        {
+            $this->view->msg = $msg;
+        }
+        $this->view->render('menu');
     }
 
     public function add()
     {
         $msg = 0;
-        $success = $this->repository->addProduct($_POST['ProductName'] ,$_POST['ProductPrice'] ,$_POST['ProductImageLink'] ,$_POST['ProductDescription'] ,$_POST['SubCategoryID']);
+        $success = $this->repository->addMenu($_POST['MenuName'] ,$_POST['MenuLink']);
         if ($success){
             $msg = "record successfully added";
         } else{
@@ -27,19 +32,15 @@ class Product extends Controller
 
     public function detail($id)
     {
-        $this->view->product = $this->repository->getProductById($id);
+        $this->view->menu = $this->repository->getMenuById($id);
 
-        include 'repository/subcategory_repository.php';
-        $CateRepo = new Subcategory_Repository();
-        $this->view->subcategory = $CateRepo->getSubcategoryOnCategories();
-
-        $this->view->render('productDetail');
+        $this->view->render('menuDetail');
     }
 
     public function edit($id)
     {
         $msg = 0;
-        $success = $this->repository->editProductMyID($id,$_POST['ProductName'] ,$_POST['ProductPrice'] ,$_POST['ProductImageLink'] ,$_POST['ProductDescription'] ,$_POST['SubCategoryID']);
+        $success = $this->repository->editMenuByID($id,$_POST['MenuName'] ,$_POST['MenuLink']);
         if ($success){
             $msg = "record successfully editted";
         } else{
