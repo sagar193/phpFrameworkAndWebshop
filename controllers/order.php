@@ -10,6 +10,7 @@ class Order extends Controller
 
     public function get()
     {
+
         $this->view->render('order');
     }
 
@@ -30,13 +31,25 @@ class Order extends Controller
         }
         unset($_COOKIE[$CART]);
         setcookie($CART, '', time() - 3600);
-        
+
         $this->view->render('home');
     }
 
     public function getdetail($id)
     {
 
+    }
+
+    public function delete($id)
+    {
+        $msg = 0;
+        $success = $this->repository->delete($id);
+        if ($success){
+            $msg = "record successfully deleted";
+        } else{
+            $msg = "failed to delete record";
+        }
+        $this->get($msg);
     }
 
 }

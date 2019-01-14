@@ -41,4 +41,39 @@ class Order_Repository extends Repository
         }
         else return false;
     }
+
+    public function delete($OrderID)
+    {
+        $deleted = 0;
+
+        $statement = $this->db->prepare("DELETE FROM OrderDetails
+        WHERE OrderID = :OrderID;");
+        $statement->execute(array(
+            ':OrderID' => $OrderID,
+        ));
+        $rowcount = $statement->rowCount();
+        if ($rowcount > 0)
+        {
+            return $deleted++;
+        }
+
+        $statement2 = $this->db->prepare("DELETE FROM Delivery
+        WHERE DeliveryID = :OrderID;");
+        $statement2->execute(array(
+            ':OrderID' => $OrderID,
+        ));
+        $rowcount = $statement2->rowCount();
+        if ($rowcount2 > 0)
+        {
+            return $deleted++;
+        }
+
+        if ($deleted > 0)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
 }
