@@ -113,7 +113,6 @@ class Product_Repository extends Repository
             $c++;
         }
 
-
         $statement = $this->db->prepare("SELECT * FROM Products WHERE
          ProductID = $productIDstring"
          );
