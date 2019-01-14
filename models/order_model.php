@@ -8,6 +8,8 @@ class Delivery_Model
 
 class OrderDetails_Model
 {	
+    public $DeliveryID;
+    public $UserID;
     public $OrderID;
     public $ProductID;
     public $Amount;

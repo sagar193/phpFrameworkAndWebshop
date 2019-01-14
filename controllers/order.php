@@ -35,9 +35,10 @@ class Order extends Controller
         $this->view->render('home');
     }
 
-    public function getdetail($id)
+    public function detail($id)
     {
-
+        $success = $this->repository->getOrderDetail($id);
+        var_dump($success);
     }
 
     public function delete($id)

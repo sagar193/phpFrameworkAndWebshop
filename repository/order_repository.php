@@ -7,6 +7,40 @@ class Order_Repository extends Repository
         parent::__construct();
     }
 
+    public function get()
+    {
+        $statement = $this->db->prepare("SELECT * FROM Delivery");
+        $statement->execute();
+
+        $data = $statement->fetchAll(PDO::FETCH_CLASS, 'Delivery_Model');
+        return $data;
+    }
+
+    public function getFromUser($UserID)
+    {
+        $statement = $this->db->prepare("SELECT * FROM Delivery
+        WHERE UserID = :UserID");
+        $statement->execute(array(
+            ':UserID' => $UserID,
+        ));
+
+        $data = $statement->fetchAll(PDO::FETCH_CLASS, 'Delivery_Model');
+        return $data;
+    }
+
+    public function getOrderDetail($OrderID)
+    {
+        $statement = $this->db->prepare("SELECT * FROM Delivery
+        LEFT JOIN OrderDetails ON Delivery.DeliveryID = OrderDetails.OrderID
+        WHERE DeliveryID = :OrderID");
+        $statement->execute(array(
+            ':OrderID' => $OrderID,
+        ));
+
+        $data = $statement->fetchAll(PDO::FETCH_CLASS, 'OrderDetails_Model');
+        return $data;
+    }
+
     public function addOrder($UserID, $cart)
     {
         $statement = $this->db->prepare("INSERT INTO Delivery 
@@ -41,6 +75,8 @@ class Order_Repository extends Repository
         }
         else return false;
     }
+
+    
 
     public function delete($OrderID)
     {
