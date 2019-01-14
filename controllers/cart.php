@@ -35,15 +35,11 @@ class Cart extends Controller
             foreach ($cart as &$obj) {
                 if($obj[0] === $id)
                 {
-                    echo "if<br/>";
                     $found = true;
                     print_r($cart);
-                    echo "<br/>";
-                    print_r($obj);
                     $newValue = (int)$obj[1];
                     $newValue++;
                     $obj[1] = $newValue;
-                    //echo "id:".$obj[0]."amount: ".$obj[1]."<br/>";
                 }
             }
             if ($found == false){

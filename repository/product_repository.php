@@ -113,9 +113,6 @@ class Product_Repository extends Repository
             $c++;
         }
 
-        echo $productIDstring;
-        /// output should be     2 AND 3
-
 
         $statement = $this->db->prepare("SELECT * FROM Products WHERE
          ProductID = $productIDstring"
