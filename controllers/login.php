@@ -19,6 +19,7 @@ class Login extends Controller
             $same = $user->checkPassword($_POST['password']);
             if ($same){
                 Session::set('id', $user->id);
+                Session::set('username', $user->username);
                 if ($user->admin == 1)
                 {
                     Session::set('admin', true);
@@ -43,6 +44,7 @@ class Login extends Controller
         {
             $user = $this->repository->getUserByName($_POST['username']);
             Session::set('id', $user->id);
+            Session::set('username', $user->username);
             $this->view->render('home');
         } 
         else
