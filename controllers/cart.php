@@ -16,18 +16,18 @@ class Cart extends Controller
             $ProductRepo = new Product_Repository();
             $this->view->products = $ProductRepo->getMultipleProductsById(unserialize($_COOKIE["CART"], ["allowed_classes" => false]));
             
+            $this->totalprice = 0.0;
             foreach ($this->view->products as &$product) {
                 $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
-                $totalprice;
                 foreach ($cart as $obj) {
                     if ($product->ProductID == $obj[0])
                     {
                         $product->Amount = $obj[1];
+                        $this->totalprice = ($product->ProductPrice * $product->Amount)+$this->totalprice;
                     }
-                    $totalprice += $product->ProductPrice*$product->Amount;
                 }
             }
-            $this->view->CartTotalPrice = $totalprice;
+            $this->view->CartTotalPrice = $this->totalprice;
         }
         $this->view->render('cart');
     }
