@@ -31,16 +31,22 @@ class Cart extends Controller
             $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
             $found = false;
             foreach ($cart as &$obj) {
-                if($obj[0] == $id)
+                if($obj[0] === $id)
                 {
+                    echo "if<br/>";
                     $found = true;
+                    print_r($cart);
+                    echo "<br/>";
+                    print_r($obj);
                     $newValue = (int)$obj[1];
                     $newValue++;
                     $obj[1] = $newValue;
+                    //echo "id:".$obj[0]."amount: ".$obj[1]."<br/>";
                 }
             }
             if ($found == false){
-                array_push($cart, $id, (int)1);
+                array_push($cart, 
+                array($id, (int)1));
             }
             setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
         }
@@ -50,6 +56,7 @@ class Cart extends Controller
         );
             setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
         }
+        //print_r( unserialize($_COOKIE["CART"], ["allowed_classes" => false]));
 
         //header('Location: '.ROOTURL.'product');
     }

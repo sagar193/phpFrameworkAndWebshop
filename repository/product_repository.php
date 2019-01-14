@@ -100,19 +100,16 @@ class Product_Repository extends Repository
          }
     }
 
-    public function getMultipleProductsById($ProductID)
+    public function getMultipleProductsById($ProductIDs)
     {
-        print_r($ProductID);
-        return;
-
         $c = 0;
         $productIDstring = " ";
-        foreach ($ProductID as &$id) {
+        foreach ($ProductIDs as &$productArray) {
             if ($c > 0){
                 $productIDstring = $productIDstring." OR ";
             }
 
-            $productIDstring = $productIDstring."" .$id;
+            $productIDstring = $productIDstring."" .$productArray[1];
             $c++;
         }
 
