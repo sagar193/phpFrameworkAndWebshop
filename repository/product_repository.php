@@ -68,12 +68,12 @@ class Product_Repository extends Repository
          $statement->execute(array(
              ':ProductID' => $ProductID,
              ':ProductName' => $ProductName,
-             ':ProductName' => $ProductPrice,
+             ':ProductPrice' => $ProductPrice,
              ':ProductImageLink' => $ProductImageLink,
              ':ProductDescription' => $ProductDescription,
              ':SubCategoryID' => $SubCategoryID
          ));
-         $statement->setFetchMode(PDO::FETCH_CLASS, 'Subcategory_Model');
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'Product_Model');
          if ( $statement->rowCount() > 0)
          {
              return true;

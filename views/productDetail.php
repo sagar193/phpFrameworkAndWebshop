@@ -1,6 +1,6 @@
 <h1> Product detail</h1>
 <div id="detailProduct">
-<form action="<?php ROOTURL?>/product/edit<?php echo $this->product->ProductID;?>" method="post">
+<form action="<?php ROOTURL?>/product/edit/<?php echo $this->product->ProductID;?>" method="post">
 <label>Category</label>
 <select name="SubCategoryID">
 <?php foreach ($this->categories as &$obj) {?>
@@ -13,13 +13,13 @@
 
 <br/>
 <label>Product name</label>
-<input type="text" name="ProductName"/><br/>
+<input type="text" name="ProductName" value="<?php echo $this->product->ProductName;?>"/><br/>
 <label>Product price</label>
-<input name="ProductPrice" type="number" min="0.00" max="10000.00" step="0.01" /><br/>
+<input name="ProductPrice" value="<?php echo $this->product->ProductPrice;?>" type="number" min="0.00" max="10000.00" step="0.01" /><br/>
 <label>Image link</label>
-<input type="text" name="ProductImageLink"><br/>
+<input type="text" name="ProductImageLink" value="<?php echo $this->product->ProductImageLink;?>"><br/>
 <label>Product description</label><br/>
 <textarea name="ProductDescription"  rows="4" cols="50">
-Here you can put a long product description
+<?php echo $this->product->ProductDescription ?>
 </textarea>
 <input type="submit" />
