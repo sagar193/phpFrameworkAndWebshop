@@ -14,15 +14,17 @@ class Cart extends Controller
         $ProductRepo = new Product_Repository();
         $this->view->products = $ProductRepo->getMultipleProductsById(unserialize($_COOKIE["CART"], ["allowed_classes" => false]));
         
-        include 'repository/subcategory_repository.php';
-        $CateRepo = new Subcategory_Repository();
-        $this->view->categories = $CateRepo->getSubcategoryOnCategories();
-
-        $this->view->render('cart');
-        $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
-        foreach ($cart as $obj) {
-            echo "amount: ".$obj[1]."<br/>";
+        foreach ($this->view->products as &$product) {
+            $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
+            foreach ($cart as $obj) {
+                if ($product->ProductID == $obj[0])
+                $product->Amount = $obj[1];
+            }
         }
+        var_dump($this->view->products);
+        
+        return;
+        $this->view->render('cart');
     }
 
     public function add($id)

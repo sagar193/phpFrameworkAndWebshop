@@ -109,7 +109,7 @@ class Product_Repository extends Repository
                 $productIDstring = $productIDstring." OR ";
             }
 
-            $productIDstring = $productIDstring."" .$productArray[1];
+            $productIDstring = $productIDstring."" .$productArray[0];
             $c++;
         }
 
@@ -117,18 +117,13 @@ class Product_Repository extends Repository
         /// output should be     2 AND 3
 
 
-
-        return;
         $statement = $this->db->prepare("SELECT * FROM Products WHERE
-         ProductID = :ProductID 
-         LEFT JOIN subcategorie on Products.SubCategoryID = subcategorie.SubCategoryID 
-         LEFT JOIN Categorie on subcategorie.CategoryID = Categorie.CategoryID;" 
+         ProductID = $productIDstring"
          );
-         $statement->execute(array(
-             ':ProductID' => $ProductID,
-         ));
+         $statement->execute();
          $statement->setFetchMode(PDO::FETCH_CLASS, 'Product_Model');
-         $data = $statement->fetch();
+         $data = $statement->fetchAll();
+
          return $data;
     }
 }
