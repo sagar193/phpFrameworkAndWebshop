@@ -27,7 +27,7 @@ class Product_Repository extends Repository
         
         $statement->execute(array(
             ':ProductName' => $ProductName,
-            ':ProductName' => $ProductPrice,
+            ':ProductPrice' => $ProductPrice,
             ':ProductImageLink' => $ProductImageLink,
             ':ProductDescription' => $ProductDescription,
             ':SubCategoryID' => $SubCategoryID
@@ -98,6 +98,41 @@ class Product_Repository extends Repository
          {
              return false;
          }
+    }
+
+    public function getMultipleProductsById($ProductID)
+    {
+        print_r($ProductID);
+        return;
+
+        $c = 0;
+        $productIDstring = " ";
+        foreach ($ProductID as &$id) {
+            if ($c > 0){
+                $productIDstring = $productIDstring." OR ";
+            }
+
+            $productIDstring = $productIDstring."" .$id;
+            $c++;
+        }
+
+        echo $productIDstring;
+        /// output should be     2 AND 3
+
+
+
+        return;
+        $statement = $this->db->prepare("SELECT * FROM Products WHERE
+         ProductID = :ProductID 
+         LEFT JOIN subcategorie on Products.SubCategoryID = subcategorie.SubCategoryID 
+         LEFT JOIN Categorie on subcategorie.CategoryID = Categorie.CategoryID;" 
+         );
+         $statement->execute(array(
+             ':ProductID' => $ProductID,
+         ));
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'Product_Model');
+         $data = $statement->fetch();
+         return $data;
     }
 }
 ?>

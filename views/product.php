@@ -3,13 +3,18 @@
 <div id="productlist">
 <?php foreach ($this->products as &$obj){?>
 <div id="product<?php echo $obj->ProductID?>">
+<img src="<?php echo ROOTURL."public/images/Products/". $obj->ProductImageLink?>">
 <h4><?php echo $obj->ProductName?></h4>
 <label><?php echo $obj->ProductPrice?></label>
 <div id="productDescription"><?php echo $obj->ProductDescription?></div>
 </div>
+<form action="<?php echo ROOTURL."/cart/add/".$obj->ProductID?>">
+<input type="submit" value="Add to cart">
+</form>
 <?php } ?>
 <br/>
 
+<?php if (Session::get('admin') == true): ?>
 <div id="addProduct">
 <form action="<?php ROOTURL?>/product/add" method="post">
 <label>Category</label>
@@ -26,7 +31,14 @@
 <input type="text" name="ProductName"/><br/>
 <label>Product price</label>
 <input name="ProductPrice" type="number" min="0.00" max="10000.00" step="0.01" /><br/>
-
+<label>Image link</label>
+<input type="text" name="ProductImageLink"><br/>
+<label>Product description</label><br/>
+<textarea name="ProductDescription"  rows="4" cols="50">
+Here you can put a long product description
+</textarea>
+<input type="submit" />
+<?php endif; ?>
 
 </form>
 </div>
