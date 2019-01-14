@@ -18,11 +18,16 @@ class Cart extends Controller
             
             foreach ($this->view->products as &$product) {
                 $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
+                $totalprice;
                 foreach ($cart as $obj) {
                     if ($product->ProductID == $obj[0])
-                    $product->Amount = $obj[1];
+                    {
+                        $product->Amount = $obj[1];
+                    }
+                    $totalprice += $product->ProductPrice*$product->Amount;
                 }
             }
+            $this->view->CartTotalPrice = $totalprice;
         }
         $this->view->render('cart');
     }
@@ -54,9 +59,8 @@ class Cart extends Controller
         );
             setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
         }
-        //print_r( unserialize($_COOKIE["CART"], ["allowed_classes" => false]));
 
-        //header('Location: '.ROOTURL.'product');
+        header('Location: '.ROOTURL.'product');
     }
 
     public function remove($id)
@@ -99,6 +103,7 @@ class Cart extends Controller
             print_r($cart);
             setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
     }
+
 
 
 }

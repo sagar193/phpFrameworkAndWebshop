@@ -14,4 +14,4 @@ if(isset($_COOKIE["CART"])){
         <img src="<?php ROOTURL?>/public/images/delete.png"/></a>
     <?php }
 }
-var_dump($this->products);
+var_dump($this->CartTotalPrice);
