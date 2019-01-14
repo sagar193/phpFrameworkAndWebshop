@@ -28,6 +28,9 @@ class Order extends Controller
         } else{
             $msg = "Order was not able to process";
         }
+        unset($_COOKIE[$CART]);
+        setcookie($CART, '', time() - 3600);
+        
         $this->view->render('home');
     }
 
