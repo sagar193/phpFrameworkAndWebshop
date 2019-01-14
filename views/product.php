@@ -10,6 +10,10 @@
 </div>
 <form action="<?php echo ROOTURL."/cart/add/".$obj->ProductID?>">
 <input type="submit" value="Add to cart">
+<a href="<?php ROOTURL?>/product/detail/<?php echo $obj->ProductID?>">
+<img src="<?php ROOTURL?>/public/images/edit.png"/></a>
+<a href="<?php ROOTURL?>/product/delete/<?php echo $obj->ProductID?>">
+<img src="<?php ROOTURL?>/public/images/delete.png"/></a>
 </form>
 <?php } ?>
 <br/>

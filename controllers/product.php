@@ -33,10 +33,9 @@ class Product extends Controller
     public function detail($id)
     {
         $this->view->product = $this->repository->getProductById($id);
-
         include 'repository/subcategory_repository.php';
         $CateRepo = new Subcategory_Repository();
-        $this->view->subcategory = $CateRepo->getSubcategoryOnCategories();
+        $this->view->categories = $CateRepo->getSubcategoryOnCategories();
 
         $this->view->render('productDetail');
     }

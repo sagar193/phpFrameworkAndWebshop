@@ -42,10 +42,10 @@ class Product_Repository extends Repository
 
     public function getProductById(int $ProductID)
     {
-        $statement = $this->db->prepare("SELECT * FROM Products WHERE
-         ProductID = :ProductID 
-         LEFT JOIN subcategorie on Products.SubCategoryID = subcategorie.SubCategoryID 
-         LEFT JOIN Categorie on subcategorie.CategoryID = Categorie.CategoryID;" 
+        $statement = $this->db->prepare("SELECT * FROM Products 
+        LEFT JOIN subcategorie on Products.SubCategoryID = subcategorie.SubCategoryID 
+        LEFT JOIN Categorie on subcategorie.CategoryID = Categorie.CategoryID
+        WHERE ProductID = :ProductID ;"
          );
          $statement->execute(array(
              ':ProductID' => $ProductID,
