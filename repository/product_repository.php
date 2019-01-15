@@ -125,7 +125,6 @@ class Product_Repository extends Repository
 
     public function search($string)
     {
-        var_dump($string);
         $statement = $this->db->prepare("SELECT * FROM Products 
         WHERE ProductImageLink LIKE '%$string%' OR ProductName LIKE '%$string%' OR ProductDescription LIKE '%$string%';"
          );
