@@ -122,5 +122,17 @@ class Product_Repository extends Repository
 
          return $data;
     }
+
+    public function search($string)
+    {
+        var_dump($string);
+        $statement = $this->db->prepare("SELECT * FROM Products 
+        WHERE ProductImageLink LIKE '%$string%' OR ProductName LIKE '%$string%' OR ProductDescription LIKE '%$string%';"
+         );
+         $statement->execute(array());
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'Product_Model');
+         $data = $statement->fetchAll();
+         return $data;
+    }
 }
 ?>
