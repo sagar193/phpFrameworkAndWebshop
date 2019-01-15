@@ -67,7 +67,6 @@ class Product extends Controller
     public function search()
     {
         $this->view->products = $this->repository->search($_POST['Search']);
-        var_dump($this->view->products);
         $this->view->render('product');
     }
 }
