@@ -1,9 +1,10 @@
-<h1>product page</h1>
+
+<h1>cart</h1>
 
         <div class="products_list catalog">    
 
     <?php
-                    if($this->products != false)
+                    if(isset($_COOKIE["CART"]))
                 {
 		                foreach($this->products as $product)
 						{
@@ -25,9 +26,12 @@
 		                    	€ ' . $product->ProductPrice . ',
                                 </div>
                                 
-                                <form action="'. ROOTURL."/cart/add/".$product->ProductID . '">
-                                <input type="submit" value="Add to cart" class="add_to_cart">
-                                </form>
+                                <label>Amount: </label>
+                                <label>'.$product->Amount.'</label>
+                                <a href="'. ROOTURL .'/cart/remove/'.$product->ProductID.'">
+                                <img src="'. ROOTURL.'/public/images/edit.png"/></a>
+                                <a href="'. ROOTURL.'/cart/delete/'.$product->ProductID.'">
+                                <img src="'. ROOTURL.'/public/images/delete.png"/></a>
 								</div><!-- .grid_6 -->
 								<div class="clear"></div>
 								</form>
