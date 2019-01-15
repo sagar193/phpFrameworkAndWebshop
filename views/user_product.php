@@ -12,7 +12,7 @@
 							  	<article>
 								<div class="grid_3">
 					  			<div class="prev">
-									<a href="product_page.php?productid=' .$product->ProductID. '"><img src="' . $product->ProductImageLink . '" alt="Product 2" title=""></a>
+									<a href="product_page.php?productid=' .$product->ProductID. '"><img src="'.ROOTURL.'public/images/Products/' . $product->ProductImageLink . '" alt="Product 2" title=""></a>
 					   			</div><!-- .prev -->
 								</div><!-- .grid_3 -->
 						
