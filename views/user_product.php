@@ -1,3 +1,4 @@
+<div class="container_12">
 <h1>product page</h1>
 
         <div class="products_list catalog">    
@@ -37,3 +38,4 @@
           
           	?>
     </div>
+</div>

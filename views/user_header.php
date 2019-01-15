@@ -127,3 +127,4 @@
         <div id="content">
 
         <?php if (isset($this->msg)){echo $this->msg;};?> <br/>
+            <section id="main">

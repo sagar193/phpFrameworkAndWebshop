@@ -1,4 +1,6 @@
-    <footer>
+</section>
+</div>   
+<footer>
         <div class="footer_navigation">
             <div class="container_12">
                 <div class="grid_3">

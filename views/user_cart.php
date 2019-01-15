@@ -1,4 +1,6 @@
 
+        <div class="container_12">
+
 
 <h1>cart</h1>
 
@@ -52,4 +54,7 @@ if(isset($this->CartTotalPrice)) {
 <br/>
 <a href="<?php ROOTURL?>/order/add"> 
 <button type="button">order</button> </a>
+                <div class="clear"></div>
+
+        </div>
 

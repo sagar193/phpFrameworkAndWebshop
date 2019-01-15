@@ -1391,7 +1391,7 @@ form.search:hover .search_button {
 *******************************************************************************/
 #slider_body {
     background: url(../img/bg_header.png) repeat center top;
-    margin: 0;
+    margin-top: -100px;
     padding-bottom: 59px;
     width: 100%;
     overflow-x: hidden;
