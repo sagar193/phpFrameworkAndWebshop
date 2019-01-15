@@ -18,5 +18,6 @@ if(isset($this->CartTotalPrice)) {
     echo "<br/>";
     echo "<label> Totale prijs: ". $this->CartTotalPrice ."</label>";
 }?>
+<br/>
 <a href="<?php ROOTURL?>/order/add"> 
-<button> </a>
+<button type="button">order</button> </a>
