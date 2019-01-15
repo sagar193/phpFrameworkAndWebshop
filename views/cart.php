@@ -14,4 +14,9 @@ if(isset($_COOKIE["CART"])){
         <img src="<?php ROOTURL?>/public/images/delete.png"/></a>
     <?php }
 }
-var_dump($this->CartTotalPrice);
+if(isset($this->CartTotalPrice)) {
+    echo "<br/>";
+    echo "<label> Totale prijs: ". $this->CartTotalPrice ."</label>";
+}?>
+<a href="<?php ROOTURL?>/order/add"> 
+<button> </a>

@@ -28,6 +28,30 @@ class Order_Repository extends Repository
         return $data;
     }
 
+    public function getAllOrderDetail()
+    {
+        $statement = $this->db->prepare("SELECT * FROM Delivery
+        LEFT JOIN OrderDetails ON Delivery.DeliveryID = OrderDetails.OrderID");
+        $statement->execute(array(
+        ));
+
+        $data = $statement->fetchAll(PDO::FETCH_CLASS, 'OrderDetails_Model');
+        return $data;
+    }
+
+    public function getAllOrderDetailFromUser($UserID)
+    {
+        $statement = $this->db->prepare("SELECT * FROM Delivery
+        LEFT JOIN OrderDetails ON Delivery.DeliveryID = OrderDetails.OrderID
+        WHERE UserID = :UserID");
+        $statement->execute(array(
+            ':UserID' => $UserID,
+        ));
+
+        $data = $statement->fetchAll(PDO::FETCH_CLASS, 'OrderDetails_Model');
+        return $data;
+    }
+
     public function getOrderDetail($OrderID)
     {
         $statement = $this->db->prepare("SELECT * FROM Delivery

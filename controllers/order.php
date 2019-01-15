@@ -10,7 +10,10 @@ class Order extends Controller
 
     public function get()
     {
-
+        if($this->isAdmin())
+            $this->view->orders = $this->repository->getAllOrderDetail();
+        else
+            $this->view->orders = $this->repository->getAllOrderDetailFromUser(Session::get('id'));
         $this->renderController('order');
     }
 
@@ -29,8 +32,8 @@ class Order extends Controller
         } else{
             $msg = "Order was not able to process";
         }
-        unset($_COOKIE[$CART]);
-        setcookie($CART, '', time() - 3600);
+        unset($_COOKIE["CART"]);
+        setcookie("CART", '', time() - 3600, "/");
 
         $this->renderController('home');
     }
@@ -38,7 +41,7 @@ class Order extends Controller
     public function detail($id)
     {
         $success = $this->repository->getOrderDetail($id);
-        var_dump($success);
+        $this->renderController('orderDetail');
     }
 
     public function delete($id)

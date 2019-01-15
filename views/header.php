@@ -23,11 +23,10 @@
 				<a class="navbar-brand" href="#"><span>SAGAR</span>SHOP</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php if (Session::get('username')):echo Session::get('username')?>
+                        <?php endif; ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            <li><a href="<?php ROOTURL?>/login/logout"><span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -38,16 +37,16 @@
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu">
             <?php foreach ($this->header as $key) { ?>
-    <li><a href=" <?php echo ROOTURL. $key->MenuLink ?> "> <?php echo $key->MenuName ?></a></li>
+    <li><a href=" <?php echo ROOTURL. 'admin/' .$key->MenuLink ?> "> <?php echo $key->MenuName ?></a></li>
 <?php } ?>
 <?php if (Session::get('id')): ?>
-    <li><a href="<?php ROOTURL?>/login/logout">Logout</a></li>
+<!--    <li><a href="<?php ROOTURL?>/login/logout">Logout</a></li>-->
 <?php else: ?>
     <li><a href="<?php ROOTURL?>/login">Login</a></li>
 <?php endif; ?>
 
 <?php if (Session::get('admin') == true): ?>
-    <li><a href="<?php ROOTURL?>/admin">Admin</a></li>
+<!--    <li><a href="<?php ROOTURL?>/admin">Admin</a></li>-->
 <?php endif; ?>
 
 		</ul>
