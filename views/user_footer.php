@@ -8,7 +8,7 @@
                     <ul class="f_contact">
                         <li>49 straat, awesomeville(rechterbovenverdieping)</li>
                         <li>+777 (100) 1234</li>
-                        <li>mail@rechtsboven.com</li>
+                        <li>mail@email.com</li>
                     </ul><!-- .f_contact -->
                 </div><!-- .grid_3 -->
 

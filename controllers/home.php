@@ -9,6 +9,11 @@ class Home extends Controller
 
     public function get($arg = false)
     {
+        include 'repository/category_repository.php';
+        $CateRepo = new Category_Repository();
+        $this->view->category = $CateRepo->getAllCategories();
+
+        
         $this->renderController('home');
     }
 }

@@ -31,6 +31,6 @@ class View{
         
         require $GLOBALS['view'].'user_header.php';
         require $GLOBALS['view']."user_". $name. '.php';
-        require $GLOBALS['view'].'User_footer.php';
+        require $GLOBALS['view'].'user_footer.php';
     }
 }
