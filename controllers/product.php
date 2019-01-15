@@ -18,6 +18,12 @@ class Product extends Controller
         $this->view->render('product');
     }
 
+    public function category($id)
+    {
+        $this->view->products = $this->repository->getByCategory($id);
+        $this->view->render('product');
+    }
+
     public function add()
     {
         $msg = 0;
