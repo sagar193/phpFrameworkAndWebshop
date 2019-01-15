@@ -1,4 +1,4 @@
-<h1>Home page admin</h1>
+<h1>Home page</h1>
 
 <div id="search">
 <form action="<?php ROOTURL?>/product/search" method="post">

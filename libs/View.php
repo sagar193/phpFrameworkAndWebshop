@@ -27,7 +27,7 @@ class View{
         $this->header = $menu->getAllMenus();
         
         require $GLOBALS['view'].'header.php';
-        require $GLOBALS['view'].$name. '.php';
+        require $GLOBALS['view']."user_". $name. '.php';
         require $GLOBALS['view'].'footer.php';
     }
 }

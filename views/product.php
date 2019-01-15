@@ -1,4 +1,4 @@
-<h1>product page</h1>
+<h1>product page admin</h1>
 
 <div id="productlist">
 <?php foreach ($this->products as &$obj){?>

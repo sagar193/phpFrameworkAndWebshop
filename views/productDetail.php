@@ -1,4 +1,4 @@
-<h1> Product detail</h1>
+<h1> Product detail admin</h1>
 <div id="detailProduct">
 <form action="<?php ROOTURL?>/product/edit/<?php echo $this->product->ProductID;?>" method="post">
 <label>Category</label>
