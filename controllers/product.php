@@ -24,6 +24,12 @@ class Product extends Controller
         $this->view->render('product');
     }
 
+    public function subcategory($id)
+    {
+        $this->view->products = $this->repository->getBySubCategory($id);
+        $this->view->render('product');
+    }
+
     public function add()
     {
         $msg = 0;

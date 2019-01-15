@@ -148,5 +148,19 @@ class Product_Repository extends Repository
          $data = $statement->fetchAll();
          return $data;
     }
+
+    public function getBySubCategory($CategoryID)
+    {
+        $statement = $this->db->prepare("SELECT * FROM subcategorie
+        RIGHT JOIN Products on subcategorie.SubCategoryID = Products.SubCategoryID 
+        WHERE subcategorie.SubCategoryID = :CategoryID"
+         );
+         $statement->execute(array(
+             ':CategoryID' => $CategoryID,
+         ));
+         $statement->setFetchMode(PDO::FETCH_CLASS, 'Product_Model');
+         $data = $statement->fetchAll();
+         return $data;
+    }
 }
 ?>
