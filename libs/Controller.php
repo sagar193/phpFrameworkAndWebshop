@@ -30,14 +30,44 @@ class Controller
             }
             else
             {
-                $this->view->render('erno_forbidden');
+                $this->renderController('erno_forbidden');
                 exit();
             }
         }
         else 
         {
-            $this->view->render('erno_forbidden');
+            $this->renderController('erno_forbidden');
             exit();
         }
+    }
+
+    public function isAdmin()
+    {
+        if(isset($this->admin))
+        {
+            if (Session::get('admin') === true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
+    public function renderController($name)
+    {
+        if($this->isAdmin()){
+            $this->view->renderAdmin($name);
+        } else{
+            $this->view->renderUser($name);
+        }
+
+
     }
 }

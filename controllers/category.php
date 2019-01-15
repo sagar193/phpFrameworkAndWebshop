@@ -14,7 +14,7 @@ class Category extends Controller
         {
             $this->view->msg = $msg;
         }
-        $this->view->render('category');
+        $this->renderController('category');
     }
 
     public function add()
@@ -38,7 +38,7 @@ class Category extends Controller
     public function detail($id)
     {
         $this->view->category = $this->repository->getCategoryByID($id);
-        $this->view->render('categoryDetail');
+        $this->renderController('categoryDetail');
     }
 
     public function edit($id)

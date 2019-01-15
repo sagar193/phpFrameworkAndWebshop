@@ -11,7 +11,7 @@ class Order extends Controller
     public function get()
     {
 
-        $this->view->render('order');
+        $this->renderController('order');
     }
 
     public function add()
@@ -20,7 +20,7 @@ class Order extends Controller
         if (!Session::get('id'))
         {
             $msg = "Unable to order when not logged in, please log in";
-            $this->view->render('product');
+            $this->view->renderController('product');
             exit();
         }
         $success = $this->repository->addOrder(Session::get('id'), unserialize($_COOKIE["CART"], ["allowed_classes" => false]));
@@ -32,7 +32,7 @@ class Order extends Controller
         unset($_COOKIE[$CART]);
         setcookie($CART, '', time() - 3600);
 
-        $this->view->render('home');
+        $this->renderController('home');
     }
 
     public function detail($id)

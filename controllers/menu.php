@@ -15,7 +15,7 @@ class Menu extends Controller
         {
             $this->view->msg = $msg;
         }
-        $this->view->render('menu');
+        $this->renderController('menu');
     }
 
     public function add()
@@ -34,7 +34,7 @@ class Menu extends Controller
     {
         $this->view->menu = $this->repository->getMenuById($id);
 
-        $this->view->render('menuDetail');
+        $this->renderController('menuDetail');
     }
 
     public function edit($id)

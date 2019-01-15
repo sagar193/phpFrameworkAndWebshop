@@ -9,7 +9,7 @@ class Login extends Controller
 
     public function get()
     {
-        $this->view->render('login');
+        $this->renderController('login');
     }
 
     public function login()
@@ -29,11 +29,11 @@ class Login extends Controller
                 }
             } else {
                 $this->view->msg = "Password is incorrect";
-                $this->view->render('login');
+                $this->renderController('login');
             }
         } else{
             $this->view->msg =  "User doesn't exist";
-            $this->view->render('login');
+            $this->renderController('login');
         }
     }
 
@@ -45,12 +45,12 @@ class Login extends Controller
             $user = $this->repository->getUserByName($_POST['username']);
             Session::set('id', $user->id);
             Session::set('username', $user->username);
-            $this->view->render('home');
+            $this->renderController('home');
         } 
         else
         {
             $this->view->msg = "Password already in use";
-            $this->view->render('login');
+            $this->renderController('login');
         }
     }
 

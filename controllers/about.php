@@ -10,7 +10,7 @@ class About extends Controller
 
     public function get()
     {
-        $this->view->render('about');
+        $this->renderController('about');
     }
 
 }

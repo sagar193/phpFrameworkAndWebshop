@@ -9,7 +9,7 @@ class Home extends Controller
 
     public function get($arg = false)
     {
-        $this->view->render('home');
+        $this->renderController('home');
     }
 }
 

@@ -29,7 +29,7 @@ class Cart extends Controller
             }
             $this->view->CartTotalPrice = $this->totalprice;
         }
-        $this->view->render('cart');
+        $this->renderController('cart');
     }
 
     public function add($id)
@@ -85,23 +85,26 @@ class Cart extends Controller
                 array_push($cart, 
                 array($id, (int)1));
             }
-            setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
+        setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
+        header('Location: '.ROOTURL.'product');
+
     }
 
     public function delete($id)
     {
         $cart = unserialize($_COOKIE["CART"], ["allowed_classes" => false]);
-            $found = false;
-            print_r($cart);
-            foreach ($cart as $key => $obj) {
-                if($obj[0] === $id)
-                {
-                    unset($cart[$key]);
-                }
+        $found = false;
+        print_r($cart);
+        foreach ($cart as $key => $obj) {
+            if($obj[0] === $id)
+            {
+                unset($cart[$key]);
             }
-            echo "<br/>";
-            print_r($cart);
-            setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
+        }
+        echo "<br/>";
+        print_r($cart);
+        setcookie("CART", serialize($cart), time() + (86400 * 30), "/");
+        header('Location: '.ROOTURL.'product');
     }
 
 

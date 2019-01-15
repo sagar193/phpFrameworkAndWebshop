@@ -15,7 +15,7 @@ class Subcategory extends Controller
         $CateRepo = new Category_Repository();
         $this->view->category = $CateRepo->getAllCategories();
 
-        $this->view->render('subcategory');
+        $this->renderController('subcategory');
     }
 
     public function add()
@@ -38,7 +38,7 @@ class Subcategory extends Controller
         $CateRepo = new Category_Repository();
         $this->view->category = $CateRepo->getAllCategories();
 
-        $this->view->render('subcategoryDetail');
+        $this->renderController('subcategoryDetail');
     }
 
     public function edit($id)

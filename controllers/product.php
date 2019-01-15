@@ -15,19 +15,19 @@ class Product extends Controller
         $CateRepo = new Subcategory_Repository();
         $this->view->categories = $CateRepo->getSubcategoryOnCategories();
 
-        $this->view->render('product');
+        $this->renderController('product');
     }
 
     public function category($id)
     {
         $this->view->products = $this->repository->getByCategory($id);
-        $this->view->render('product');
+        $this->renderController('product');
     }
 
     public function subcategory($id)
     {
         $this->view->products = $this->repository->getBySubCategory($id);
-        $this->view->render('product');
+        $this->renderController('product');
     }
 
     public function add()
@@ -49,7 +49,7 @@ class Product extends Controller
         $CateRepo = new Subcategory_Repository();
         $this->view->categories = $CateRepo->getSubcategoryOnCategories();
 
-        $this->view->render('productDetail');
+        $this->renderController('productDetail');
     }
 
     public function edit($id)
@@ -79,6 +79,6 @@ class Product extends Controller
     public function search()
     {
         $this->view->products = $this->repository->search($_POST['Search']);
-        $this->view->render('product');
+        $this->renderController('product');
     }
 }
