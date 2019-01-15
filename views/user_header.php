@@ -90,7 +90,7 @@
                             <li class="parent plus"><a href="/category"> categories</a>
                                     <ul class="sub" style="display: none;">
                                     <?php foreach ($this->cat as $ca) { ?>
-                                        <li><a href="/category/detail/<?php echo '/'.$ca->CategoryID ?> "> <?php echo $ca->CategoryName ?></a></li>
+                                        <li><a href="/product/category/<?php echo '/'.$ca->CategoryID ?> "> <?php echo $ca->CategoryName ?></a></li>
                                     <?php } ?>
                                     </ul>
                                 </li>
